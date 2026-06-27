@@ -1,0 +1,13 @@
+target/
+bin/
+.settings/
+.project
+.classpath
+logs/
+reports/
+allure-results/
+allure-report/
+test-output/
+*.log
+*.gz
+*.tmp
