@@ -1,13 +1,21 @@
+# Maven
 target/
-bin/
+
+# Eclipse
 .settings/
 .project
 .classpath
+
+# Logs
 logs/
-reports/
+*.log
+
+# Reports
 allure-results/
 allure-report/
+reports/
 test-output/
-*.log
-*.gz
-*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
