@@ -1,7 +1,425 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.danish.api</groupId>
-  <artifactId>RestAssuredFramework</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>RestAssuredFramework</name>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.danish.api</groupId>
+    <artifactId>RestAssuredFramework</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <!-- Project Configuration Framework Setup -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <java.release.version>21</java.release.version>
+        
+        <!-- Missing Build Timestamp [Requirement 4] -->
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+        
+        <!-- Framework Dependency Layer Versions -->
+        <testng.version>7.10.2</testng.version>
+        <rest-assured.version>5.5.0</rest-assured.version>
+        <jackson.version>2.17.2</jackson.version>
+        <gson.version>2.11.0</gson.version>
+        <lombok.version>1.18.34</lombok.version>
+        <log4j.version>2.23.1</log4j.version>
+        <poi.version>5.3.0</poi.version>
+        <commons-io.version>2.16.1</commons-io.version>
+        <commons-lang3.version>3.14.0</commons-lang3.version>
+        <datafaker.version>2.2.2</datafaker.version>
+        <awaitility.version>4.2.1</awaitility.version>
+        <jsonassert.version>1.5.3</jsonassert.version>
+        <extentreports.version>5.1.2</extentreports.version>
+        <allure.version>2.27.0</allure.version>
+        <aspectj.version>1.9.22.1</aspectj.version>
+
+        <!-- Dynamic XML Selection Control Mapping for Jenkins -->
+        <suiteXmlFile>src/test/resources/test-suites/testng.xml</suiteXmlFile>
+    </properties>
+
+    <dependencies>
+        <!-- 1. Test Architecture Framework -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 2. Core API Automated Execution Stack (RestAssured Engine) -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
+           
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-path</artifactId>
+            <version>${rest-assured.version}</version>
+            
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>xml-path</artifactId>
+            <version>${rest-assured.version}</version>
+           
+        </dependency>
+                <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>${rest-assured.version}</version>
+            
+        </dependency>
+
+        <!-- 3. Serialization Layer Data Engines (Jackson & Gson) -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-csv</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+
+        <!-- 4. Utilities, Dynamic Payloads & Boilerplate Minimizer -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>${datafaker.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>${awaitility.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+            <version>${jsonassert.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20260522</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- 5. Logging Layer Modules -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <!-- 6. File Management Processing Modules (Apache POI, Commons IO & Upload) -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.6.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- 7. Advanced Automated Reporting Engines (Extent, Allure & AspectJ) -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>${extentreports.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+ <!--      <dependency>
+        	<groupId>com.anhtester</groupId>
+        	<artifactId>anhtester-cucumber-testng</artifactId>
+        	<version>1.8.7</version>
+        </dependency>  --> 
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Standardized Management Clean Architecture Plugins -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.4.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.1</version>
+                    <!-- 2. Resources Plugin Config [Requirement 2] -->
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
+                <!-- 7. Flatten Maven Plugin Added [Requirement 7] -->
+               <plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>flatten-maven-plugin</artifactId>
+    <version>1.6.0</version>
+
+    <executions>
+
+        <execution>
+
+            <id>flatten</id>
+
+            <phase>process-resources</phase>
+
+            <goals>
+
+                <goal>flatten</goal>
+
+            </goals>
+
+        </execution>
+
+    </executions>
+
+    <configuration>
+
+        <updatePomFile>true</updatePomFile>
+
+        <flattenMode>resolveProperties</flattenMode>
+
+    </configuration>
+
+</plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>2.17.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <!-- 1. Java 21 Code Compiler Plugin Setup with Lombok Support -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>${java.release.version}</release>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <!-- 1. Compiler Plugin Parameters Active [Requirement 1] -->
+                    <parameters>true</parameters>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <!-- 2. Surefire Runner Configuration with AspectJ & Jenkins Parameter Support -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <environment>${env}</environment>
+                    </systemPropertyVariables>    
+                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory> 
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                </configuration>
+            </plugin>
+
+            <!-- 3. Failsafe Integration Execution Plugin (End-to-End Checks) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- 4. Maven Enforcer Plugin (Guarantees Java 21 and Maven Environment Standards) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven-java-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.8.0</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>${java.release.version}</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- 3. Missing Allure Plugin Integrated [Requirement 3] -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.12.0</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- 5 & 6. Maven Profiles for Environment Test Routing [Requirements 5 & 6] -->
+    <profiles>
+        <!-- Environment Environments -->
+        <profile>
+            <id>local</id>
+            <properties>
+                <suiteXmlFile>src/test/resources/test-suites/testng-local.xml</suiteXmlFile>
+            </properties>
+        </profile>
+        <profile>
+            <id>remote</id>
+            <properties>
+                <suiteXmlFile>src/test/resources/test-suites/testng-remote.xml</suiteXmlFile>
+            </properties>
+        </profile>
+        <profile>
+            <id>docker</id>
+            <properties>
+                <suiteXmlFile>src/test/resources/test-suites/testng-docker.xml</suiteXmlFile>
+            </properties>
+        </profile>
+        <profile>
+            <id>qa</id>
+            <properties>
+                <suiteXmlFile>src/test/resources/test-suites/testng-qa.xml</suiteXmlFile>
+            </properties>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <properties>
+                <suiteXmlFile>src/test/resources/test-suites/testng-uat.xml</suiteXmlFile>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <suiteXmlFile>src/test/resources/test-suites/testng-prod.xml</suiteXmlFile>
+            </properties>
+        </profile>
+
+        <!-- Cloud Execution Provider Profiles -->
+        <profile>
+            <id>BrowserStack</id>
+            <properties>
+                <suiteXmlFile>src/test/resources/test-suites/testng-browserstack.xml</suiteXmlFile>
+            </properties>
+        </profile>
+        <profile>
+            <id>LambdaTest</id>
+            <properties>
+                <suiteXmlFile>src/test/resources/test-suites/testng-lambdatest.xml</suiteXmlFile>
+            </properties>
+        </profile>
+    </profiles>
 </project>
+
