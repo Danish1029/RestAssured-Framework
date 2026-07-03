@@ -1,12 +1,30 @@
 package models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
-    private String name;
+    public Long id;
 
-    private String job;
+    public String username;
+
+    public String firstName;
+
+    public String lastName;
+
+    public String email;
+
+    public String password;
+
+    public String phone;
+
+    public Integer userStatus;
 
 }

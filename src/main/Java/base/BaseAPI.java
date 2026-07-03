@@ -8,10 +8,11 @@ import java.util.Map;
 
 public class BaseAPI {
 
-    protected Response get(String endpoint) {
+    public Response get(String endpoint) {
 
         return RestAssured
                 .given()
+                .relaxedHTTPSValidation()
                 .spec(RequestSpecFactory.getRequestSpecification())
                 .when()
                 .get(endpoint);
@@ -23,6 +24,7 @@ public class BaseAPI {
 
         return RestAssured
                 .given()
+                .relaxedHTTPSValidation()
                 .spec(RequestSpecFactory.getRequestSpecification())
                 .pathParams(pathParams)
                 .when()
@@ -35,6 +37,7 @@ public class BaseAPI {
 
         return RestAssured
                 .given()
+                .relaxedHTTPSValidation()
                 .spec(RequestSpecFactory.getRequestSpecification())
                 .body(payload)
                 .when()
@@ -48,6 +51,7 @@ public class BaseAPI {
 
         return RestAssured
                 .given()
+                .relaxedHTTPSValidation()
                 .spec(RequestSpecFactory.getRequestSpecification())
                 .pathParams(pathParams)
                 .body(payload)
@@ -62,6 +66,7 @@ public class BaseAPI {
 
         return RestAssured
                 .given()
+                .relaxedHTTPSValidation()
                 .spec(RequestSpecFactory.getRequestSpecification())
                 .pathParams(pathParams)
                 .body(payload)
@@ -75,6 +80,7 @@ public class BaseAPI {
 
         return RestAssured
                 .given()
+                .relaxedHTTPSValidation()
                 .spec(RequestSpecFactory.getRequestSpecification())
                 .pathParams(pathParams)
                 .when()

@@ -37,7 +37,8 @@
         <aspectj.version>1.9.22.1</aspectj.version>
 
         <!-- Dynamic XML Selection Control Mapping for Jenkins -->
-        <suiteXmlFile>src/test/resources/test-suites/testng.xml</suiteXmlFile>
+  <!--     <suiteXmlFile>src/test/resources/test-suites/testng.xml</suiteXmlFile>  --> 
+ <suiteXmlFile>test-suite/testng.xml</suiteXmlFile>
     </properties>
 
     <dependencies>
@@ -156,6 +157,12 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
         </dependency>
+        <dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-slf4j2-impl</artifactId>
+    <version>${log4j.version}</version>
+</dependency>
+
 
         <!-- 6. File Management Processing Modules (Apache POI, Commons IO & Upload) -->
         <dependency>
@@ -184,6 +191,7 @@
             <version>1.6.0</version>
             <scope>compile</scope>
         </dependency>
+        
 
         <!-- 7. Advanced Automated Reporting Engines (Extent, Allure & AspectJ) -->
         <dependency>
@@ -301,9 +309,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.3.1</version>
                 <configuration>
-                    <systemPropertyVariables>
+                  <!-- <systemPropertyVariables>
                         <environment>${env}</environment>
-                    </systemPropertyVariables>    
+                    </systemPropertyVariables>   -->  
                     <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory> 
                     <suiteXmlFiles>
                         <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="REST Assured Suite">
+
+ <parameter name="env" value="QA"/>
+
+    <test name="API Tests">
+
+       <classes>
+
+    <class name="testCases.PetTest"/>    
+
+    <class name="testCases.CreatePetTest"/>
+
+    <class name="testCases.GetPetByIdTest"/>
+    <class name="testCases.UpdatePetTest"/>    
+
+</classes>
+
+    </test>
+
+</suite>

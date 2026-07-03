@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import constants.FrameworkConstants;
-
 public final class ConfigReader {
 
     private static final Properties properties = new Properties();
@@ -19,24 +17,18 @@ public final class ConfigReader {
 
     private static void loadProperties() {
 
-        String environment = System.getProperty("env");
-
-        if (environment == null || environment.trim().isEmpty()) {
-            environment = "qa";
-        }
-
-        String fileName = "config/" + environment.toLowerCase() + ".properties";
+        String fileName = "config/qa.properties";
 
         try (InputStream input = ConfigReader.class.getClassLoader().getResourceAsStream(fileName)) {
 
             if (input == null) {
-                throw new RuntimeException("Configuration file not found : " + fileName);
+                throw new RuntimeException("Configuration file not found: " + fileName);
             }
 
             properties.load(input);
 
         } catch (IOException e) {
-            throw new RuntimeException("Unable to load configuration file : " + fileName, e);
+            throw new RuntimeException("Unable to load configuration file: " + fileName, e);
         }
     }
 
@@ -45,7 +37,7 @@ public final class ConfigReader {
         String value = properties.getProperty(key);
 
         if (value == null || value.trim().isEmpty()) {
-            throw new RuntimeException("Property '" + key + "' not found.");
+            throw new RuntimeException("Property '" + key + "' not found in qa.properties.");
         }
 
         return value.trim();
@@ -56,7 +48,7 @@ public final class ConfigReader {
     }
 
     public static String getEnvironment() {
-    	return getProperty(FrameworkConstants.BASE_URL);
+        return "QA";
     }
 
     public static int getConnectTimeout() {
@@ -65,5 +57,17 @@ public final class ConfigReader {
 
     public static int getReadTimeout() {
         return Integer.parseInt(getProperty("read.timeout"));
+    }
+    
+    public static boolean isProxyEnabled() {
+        return Boolean.parseBoolean(getProperty("proxy.enabled"));
+    }
+
+    public static String getProxyHost() {
+        return getProperty("proxy.host");
+    }
+
+    public static int getProxyPort() {
+        return Integer.parseInt(getProperty("proxy.port"));
     }
 }
