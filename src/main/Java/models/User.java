@@ -5,26 +5,55 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * ============================================================================
+ * Model Class : User
+ * ============================================================================
+ *
+ * Represents a User object used by the Swagger PetStore User APIs.
+ *
+ * This POJO is used for:
+ * • Request Serialization
+ * • Response Deserialization
+ * • Data Driven Testing
+ * • API Chaining
+ *
+ * Lombok annotations generate boilerplate code such as:
+ * • Getters
+ * • Setters
+ * • Constructors
+ * • Builder
+ *
+ * ============================================================================
+ */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
 
-    public Long id;
+    /** Unique User Identifier */
+    private Long id;
 
-    public String username;
+    /** Login Username */
+    private String username;
 
-    public String firstName;
+    /** User First Name */
+    private String firstName;
 
-    public String lastName;
+    /** User Last Name */
+    private String lastName;
 
-    public String email;
+    /** Email Address */
+    private String email;
 
-    public String password;
+    /** Login Password */
+    private String password;
 
-    public String phone;
+    /** Contact Number */
+    private String phone;
 
-    public Integer userStatus;
+    /** User Status */
+    private Integer userStatus;
 
 }

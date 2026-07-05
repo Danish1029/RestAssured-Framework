@@ -1,4 +1,4 @@
-package testCases;
+package testCases.positive;
 
 import static org.testng.Assert.assertEquals;
 
@@ -30,7 +30,9 @@ public class UpdatePetTest extends BaseTest {
 
         // Send PUT request
         Response response = petAPI.updatePet(pet);
-
+        logger.info(
+                "Status Code : {}",
+                response.getStatusCode());
         logger.info(response.asPrettyString());
 
         // Status code validation

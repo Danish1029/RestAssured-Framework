@@ -1,4 +1,4 @@
-package testCases;
+package testCases.positive;
 
 import static org.testng.Assert.assertEquals;
 
@@ -23,6 +23,9 @@ public class GetPetByIdTest extends BaseTest {
 
         logger.info("Before GET -> TestContext = {}", TestContext.getPetId());
         logger.info("Before GET -> Local petId = {}", petId);
+        logger.info(
+                "Status Code : {}",
+                response.getStatusCode());
         logger.info(response.asPrettyString());
 
         assertEquals(response.getStatusCode(), 200);

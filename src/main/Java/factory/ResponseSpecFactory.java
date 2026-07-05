@@ -9,18 +9,20 @@ public final class ResponseSpecFactory {
     private ResponseSpecFactory() {
     }
 
-    private static ResponseSpecification responseSpecification;
+    private static ResponseSpecification successResponseSpecification;
 
-    public static ResponseSpecification getResponseSpecification() {
+    public static ResponseSpecification getSuccessResponseSpecification() {
 
-        if (responseSpecification == null) {
+        if (successResponseSpecification == null) {
 
-            responseSpecification = new ResponseSpecBuilder()
-                    .expectContentType(ContentType.JSON)
-                    .build();
+            successResponseSpecification = new ResponseSpecBuilder()
+            		 .expectStatusCode(200)
+            	        .expectContentType(ContentType.JSON)
+            	        .build();
 
         }
 
-        return responseSpecification;
+        return successResponseSpecification;
     }
+
 }

@@ -35,7 +35,7 @@
         <extentreports.version>5.1.2</extentreports.version>
         <allure.version>2.27.0</allure.version>
         <aspectj.version>1.9.22.1</aspectj.version>
-
+        <hamcrest.version>3.0</hamcrest.version>
         <!-- Dynamic XML Selection Control Mapping for Jenkins -->
   <!--     <suiteXmlFile>src/test/resources/test-suites/testng.xml</suiteXmlFile>  --> 
  <suiteXmlFile>test-suite/testng.xml</suiteXmlFile>
@@ -131,8 +131,9 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
             <version>3.0</version>
-            <scope>test</scope>
+ <!--          <scope>test</scope>   --> 
         </dependency>
+        
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>

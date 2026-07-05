@@ -1,4 +1,4 @@
-package testCases;
+package testCases.positive;
 
 import static org.testng.Assert.assertEquals;
 
@@ -13,6 +13,7 @@ import io.restassured.response.Response;
 import models.Pet;
 import testBase.BaseTest;
 import testDataFactory.PetDataFactory;
+import utils.AssertionUtils;
 import utils.SchemaUtils;
 import utils.TestContext;
 
@@ -34,6 +35,9 @@ public class CreatePetTest extends BaseTest {
         .spec(ResponseSpecFactory.getSuccessResponseSpecification());
         
         // Log response
+        logger.info(
+                "Status Code : {}",
+                response.getStatusCode());
         logger.info(response.asPrettyString());
 
         // Validate status code
@@ -43,13 +47,18 @@ public class CreatePetTest extends BaseTest {
         
         // Deserialize response into Pet object
         Pet responsePet = response.as(Pet.class);
-        
+  ///      
         // Validate returned data
-        assertEquals(responsePet.getId(), pet.getId());
+       assertEquals(responsePet.getId(), pet.getId());
         assertEquals(responsePet.getName(), pet.getName());
         assertEquals(responsePet.getStatus(), pet.getStatus());
         assertEquals(responsePet.getCategory().getName(), pet.getCategory().getName());
-
+///
+        AssertionUtils.validateSuccessResponse(
+                response,
+                "PetSchema.json");
+        
+        
  /*       assertEquals(response.jsonPath().getString("name"), pet.getName());
 
         assertEquals(response.jsonPath().getString("status"), "available");

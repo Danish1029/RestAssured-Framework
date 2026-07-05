@@ -25,4 +25,18 @@ public final class Routes {
     public static final String PLACE_ORDER = "/store/order";
     public static final String GET_ORDER = "/store/order/{orderId}";
     public static final String DELETE_ORDER = "/store/order/{orderId}";
+   
+    /**
+     * Endpoint to retrieve pets by their current status.
+     *
+     * Supported status values:
+     * available
+     * pending
+     * sold
+     */
+    public static final String FIND_PET_BY_STATUS = "/pet/findByStatus";
+
+
+    
+    
 }
