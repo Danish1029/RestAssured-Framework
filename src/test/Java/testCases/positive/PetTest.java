@@ -12,7 +12,13 @@ public class PetTest extends BaseTest {
 
 	PetAPI petAPI = new PetAPI();
 
-	@Test
+	@Test(
+		    groups = {
+		        "pet",
+		        "smoke",
+		        "regression"
+		    }
+		)
 	public void verifyFindAvailablePets() {
 
 	    Response response = petAPI.findPetsByStatus("available");

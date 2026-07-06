@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import api.PetAPI;
 import api.UserAPI;
@@ -18,9 +20,23 @@ public class BaseTest {
 	 */
 	protected final UserAPI userAPI = new UserAPI(); 
 	protected Logger logger;
+	/**
+	 * Initializes the framework before execution.
+	 */
+	@BeforeSuite(alwaysRun = true)
+	@Parameters({"env", "browser"})
+	public void beforeSuite(
+	        @Optional("QA") String env,
+	        @Optional("chrome") String browser) {
 
-    @BeforeSuite
-    public void beforeSuite() {
+	    System.setProperty("environment", env);
+	    System.setProperty("browser", browser);
+
+	    logger.info("========================================");
+	    logger.info("Environment : {}", env);
+	    logger.info("Browser     : {}", browser);
+	    logger.info("========================================");
+	
 
         RestAssured.baseURI = ConfigReader.getProperty("base.url");
 

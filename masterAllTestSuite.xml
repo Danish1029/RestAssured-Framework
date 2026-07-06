@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="REST Assured API Automation Suite"
+       parallel="classes"
+       thread-count="3"
+       verbose="2">
+
+    <!-- ========================================================= -->
+    <!-- Global Parameters                                         -->
+    <!-- ========================================================= -->
+
+    <!-- Environment Selection -->
+    <parameter name="env" value="QA"/>
+
+    <!-- Reserved for future hybrid framework / Jenkins -->
+    <parameter name="browser" value="chrome"/>
+
+    <!-- ========================================================= -->
+    <!-- Listeners                                                 -->
+    <!-- ========================================================= -->
+
+    <listeners>
+
+        <listener class-name="reports.ExtentReportManager"/>
+
+        <!-- Optional Console Listener -->
+        <listener class-name="listeners.TestListener"/>
+
+    </listeners>
+
+
+
+    <!-- ========================================================= -->
+    <!-- Pet Module                                                -->
+    <!-- ========================================================= -->
+
+    <test name="Pet Module Tests">
+
+        <!--
+        Uncomment to execute only specific groups
+
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <include name="pet"/>
+            </run>
+        </groups>
+        -->
+
+        <classes>
+
+            <class name="testCases.PetTest"/>
+
+            <class name="testCases.CreatePetTest"/>
+
+            <class name="testCases.GetPetByIdTest"/>
+
+            <class name="testCases.UpdatePetTest"/>
+
+            <class name="testCases.DeletePetTest"/>
+
+            <class name="testCases.FindPetByStatusTest"/>
+
+        </classes>
+
+    </test>
+
+    <!-- ========================================================= -->
+    <!-- User Module                                               -->
+    <!-- ========================================================= -->
+
+    <test name="User Module Tests">
+
+        <classes>
+
+            <class name="testCases.positive.user.CreateUserTest"/>
+
+            <class name="testCases.positive.user.GetUserTest"/>
+
+            <class name="testCases.positive.user.UpdateUserTest"/>
+
+            <class name="testCases.positive.user.DeleteUserTest"/>
+
+            <class name="testCases.positive.user.LoginUserTest"/>
+
+            <class name="testCases.positive.user.LogoutUserTest"/>
+
+        </classes>
+
+    </test>
+
+    <!-- ========================================================= -->
+    <!-- Store Module                                              -->
+    <!-- ========================================================= -->
+
+    <test name="Store Module Tests">
+
+        <classes>
+
+            <!--
+            Add Store API Tests here
+
+            <class name="testCases.store.CreateOrderTest"/>
+            <class name="testCases.store.GetOrderTest"/>
+            <class name="testCases.store.DeleteOrderTest"/>
+            -->
+
+        </classes>
+
+    </test>
+
+</suite>

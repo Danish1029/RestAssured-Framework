@@ -6,16 +6,33 @@ import org.testng.ITestResult;
 
 public class TestListener implements ITestListener {
 
-    @Override
-    public void onStart(ITestContext context) {
+	@Override
+	public void onStart(ITestContext context) {
 
-        System.out.println();
-        System.out.println("========================================");
-        System.out.println("Execution Started : " + context.getName());
-        System.out.println("========================================");
-        System.out.println();
+	    System.out.println();
 
-    }
+	    System.out.println("========================================");
+
+	    System.out.println("Suite        : "
+	            + context.getSuite().getName());
+
+	    System.out.println("Test         : "
+	            + context.getName());
+
+	    System.out.println("Environment  : "
+	            + System.getProperty("environment"));
+
+	    System.out.println("Browser      : "
+	            + System.getProperty("browser"));
+
+	    System.out.println("Thread Count : "
+	            + context.getSuite().getXmlSuite().getThreadCount());
+
+	    System.out.println("========================================");
+
+	    System.out.println();
+
+	}
 
     @Override
     public void onFinish(ITestContext context) {

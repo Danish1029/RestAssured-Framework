@@ -14,7 +14,12 @@ import testBase.BaseTest;
 
 public class BearerAuthenticationTest extends BaseTest {
 
-    @Test
+	@Test(
+		    groups = {
+		        "user",
+		        "regression"
+		    }
+		)
     public void verifyBearerAuthentication() {
 
         LoginRequest request = LoginRequest.builder()

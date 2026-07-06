@@ -44,13 +44,37 @@ public final class ConfigReader {
     }
 
     public static String getBaseURL() {
-        return getProperty("base.url");
+
+        String env = getEnvironment();
+
+        switch (env.toUpperCase()) {
+
+        case "DEV":
+            return properties.getProperty("dev.baseUrl");
+
+        case "UAT":
+            return properties.getProperty("uat.baseUrl");
+
+        case "PROD":
+            return properties.getProperty("prod.baseUrl");
+
+        default:
+            return properties.getProperty("qa.baseUrl");
+
+        }
+
     }
+    
+    
+    
 
     public static String getEnvironment() {
-        return "QA";
-    }
 
+        return System.getProperty(
+                "environment",
+                properties.getProperty("environment"));
+
+    }
     public static int getConnectTimeout() {
         return Integer.parseInt(getProperty("connect.timeout"));
     }

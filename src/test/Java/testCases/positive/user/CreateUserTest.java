@@ -53,7 +53,7 @@ public class CreateUserTest extends BaseTest {
 
         // Store Username for API Chaining.
         UserContext.setUsername(user.getUsername());
-
+        UserContext.setUserId(user.getId());
         logger.info("Created Username : {}", user.getUsername());
 
     }

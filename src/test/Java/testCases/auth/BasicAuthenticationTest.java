@@ -11,7 +11,13 @@ import testBase.BaseTest;
 
 public class BasicAuthenticationTest extends BaseTest {
 
-    @Test
+	@Test(
+		    groups = {
+		        "pet",
+		        "smoke",
+		        "regression"
+		    }
+		)
     public void verifyBasicAuthentication() {
 
         Response response = RestAssured

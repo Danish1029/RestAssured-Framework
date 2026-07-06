@@ -14,7 +14,12 @@ import testBase.BaseTest;
 
 public class BearerTokenUsageTest extends BaseTest {
 
-    @Test
+	@Test(
+		    groups = {
+		        "user",
+		        "regression"
+		    }
+		)
     public void verifyBearerTokenUsage() {
 
         // Login

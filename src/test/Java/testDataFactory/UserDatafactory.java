@@ -45,5 +45,29 @@ public final class UserDatafactory {
                 .build();
 
     }
+    
+    /**
+     * Creates a User object with updated information.
+     *
+     * Existing Username is preserved because the update API
+     * identifies the User using the Username in the URL.
+     *
+     * @param existingUsername Username of the User to update.
+     * @return Updated User object.
+     */
+    public static User createUpdatedUser(String existingUsername) {
+
+        return User.builder()
+                .id(faker.number().randomNumber())
+                .username(existingUsername)
+                .firstName("Updated_" + faker.name().firstName())
+                .lastName("Updated_" + faker.name().lastName())
+                .email(faker.internet().emailAddress())
+                .password(faker.internet().password(8,15))
+                .phone(faker.phoneNumber().cellPhone())
+                .userStatus(1)
+                .build();
+
+    }
 
 }

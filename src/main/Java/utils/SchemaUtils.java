@@ -2,6 +2,8 @@ package utils;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
+import java.net.URL;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,8 +20,34 @@ public final class SchemaUtils {
 
         response.then()
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("schemas/" + schemaFile));
+                .body(
+                	    io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema(
+                	        SchemaUtils.class.getClassLoader()
+                	                .getResourceAsStream("schemas/" + schemaFile)
+                	    )
+                	);
+                
+                
+     /*           .body(matchesJsonSchemaInClasspath("schemas/" + schemaFile));
+*/
+                
+// =================================================        
+        
+        String schemaPath = null;
+		// Debug classpath
+        URL resource = SchemaUtils.class
+                .getClassLoader()
+                .getResource(schemaPath);
 
+        System.out.println("Schema Path : " + schemaPath);
+        System.out.println("Schema URL  : " + resource);
+
+        response.then()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath(schemaPath));  
+
+// ========================================================================        
+        
         logger.info("JSON Schema Validation Passed : {}", schemaFile);
     }
 }
